@@ -6,8 +6,15 @@ import json
 import datetime
 
 dir = '/home/moaklero/www/subway-time/'
+# dir = '/Users/robert/Documents/Projects/subway-time/'
+
+# Station codes: http://web.mta.info/developers/data/nyct/subway/Stations.csv
 stations = {'R20N': {'name': 'Union Sq', 'times': {'N': [], 'Q': [], 'R': [], 'W': []}},
             'R20S': {'name': 'Union Sq', 'times': {'N': [], 'Q': [], 'R': [], 'W': []}},
+            'R24N': {'name': 'City Hall', 'times': {'N': [], 'Q': [], 'R': [], 'W': []}},
+            'R24S': {'name': 'City Hall', 'times': {'N': [], 'Q': [], 'R': [], 'W': []}},
+            'R29N': {'name': 'Jay St.', 'times': {'N': [], 'Q': [], 'R': [], 'W': []}},
+            'R29S': {'name': 'Jay St.', 'times': {'N': [], 'Q': [], 'R': [], 'W': []}},
             'R30N': {'name': 'DeKalb', 'times': {'N': [], 'Q': [], 'R': [], 'W': []}},
             'R30S': {'name': 'DeKalb', 'times': {'N': [], 'Q': [], 'R': [], 'W': []}},
             'R36N': {'name': '36th St.', 'times': {'N': [], 'Q': [], 'R': [], 'W': []}},
@@ -54,10 +61,10 @@ for station in stations:
     for train in stations[station]['times']:
         stations[station]['times'][train] = sorted(stations[station]['times'][train])
 
-header = '{:>8}  {:<7}   {:<7}   {:<7}   {:<7}\n'.format('', 'N', 'Q', 'R', 'W')
+header = '{:>9}  {:<7}  {:<7}  {:<7}  {:<7}\n'.format('', ' N', ' Q', ' R', ' W')
 
 def time_format(station, stations):
-    times = '{:>8}  {:>2}, {:>2}    {:>2}, {:>2}    {:>2}, {:>2}    {:>2}, {:>2} \n'.format(
+    times = '{:>9}  {:>2}, {:>2}   {:>2}, {:>2}   {:>2}, {:>2}   {:>2}, {:>2} \n'.format(
         stations[station]['name'],
         stations[station]['times']['N'][0] if len(stations[station]['times']['N']) > 0 else '-',
         stations[station]['times']['N'][1] if len(stations[station]['times']['N']) > 1 else '-',
@@ -82,11 +89,15 @@ file.write(time_format('R45N', stations))
 file.write(time_format('R41N', stations))
 file.write(time_format('R36N', stations))
 file.write(time_format('R30N', stations))
+file.write(time_format('R29N', stations))
+file.write(time_format('R24N', stations))
 file.write(time_format('R20N', stations))
 
 file.write('\nGoing home\n')
 file.write(header)
 file.write(time_format('R20S', stations))
+file.write(time_format('R29S', stations))
+file.write(time_format('R24S', stations))
 file.write(time_format('R30S', stations))
 file.write(time_format('R36S', stations))
 file.write(time_format('R41S', stations))
