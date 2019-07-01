@@ -5,6 +5,7 @@ import os # imports package for dotenv
 import json
 import datetime
 
+dir = '/home/moaklero/www/subway-time/'
 stations = {'R20N': {'name': 'Union Sq', 'times': {'N': [], 'Q': [], 'R': [], 'W': []}},
             'R20S': {'name': 'Union Sq', 'times': {'N': [], 'Q': [], 'R': [], 'W': []}},
             'R30N': {'name': 'DeKalb', 'times': {'N': [], 'Q': [], 'R': [], 'W': []}},
@@ -15,7 +16,7 @@ stations = {'R20N': {'name': 'Union Sq', 'times': {'N': [], 'Q': [], 'R': [], 'W
             'R41S': {'name': '59th St.', 'times': {'N': [], 'Q': [], 'R': [], 'W': []}},
             'R45N': {'name': '95th St.',  'times': {'N': [], 'Q': [], 'R': [], 'W': []}}}
 
-key_file = open("mta.key", "r")
+key_file = open(dir + "mta.key", "r")
 key = key_file.readline().rstrip('\n')
 
 # Requests subway status data feed from City of New York MTA API
@@ -70,7 +71,7 @@ def time_format(station, stations):
 
 
 # file = open("/home/moaklero/www/subway.txt", "w")
-file = open("subway.txt", "w")
+file = open(dir + "subway.txt", "w")
 
 file.write('Last updated: {}\n\n'.format(datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %-I:%M:%S%p')))
 
