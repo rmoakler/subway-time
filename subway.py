@@ -54,7 +54,7 @@ for i, trains in enumerate(realtime_data): # trains are dictionaries
                     station_id = scheduled_arrivals['stop_id']
                     current_time = int(time.time())
                     time_until_train = int(((scheduled_arrivals['departure']['time'] - current_time) / 60))
-                    if time_until_train >= 0:
+                    if time_until_train >= 0 and time_until_train <= 30:
                         stations[station_id]['times'][train_id[-1]] += [time_until_train]
 
 for station in stations:
