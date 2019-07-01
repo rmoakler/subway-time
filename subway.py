@@ -5,6 +5,7 @@ import os # imports package for dotenv
 import json
 import datetime
 
+
 dir = '/home/moaklero/www/subway-time/'
 # dir = '/Users/robert/Documents/Projects/subway-time/'
 
