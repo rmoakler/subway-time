@@ -9,19 +9,19 @@ dir = '/home/moaklero/www/subway-time/'
 # dir = '/Users/robert/Documents/Projects/subway-time/'
 
 # Station codes: http://web.mta.info/developers/data/nyct/subway/Stations.csv
-stations = {'R20N': {'name': 'Union Sq', 'times': {'N': [], 'Q': [], 'R': [], 'W': []}},
-            'R20S': {'name': 'Union Sq', 'times': {'N': [], 'Q': [], 'R': [], 'W': []}},
-            'R24N': {'name': 'City Hall', 'times': {'N': [], 'Q': [], 'R': [], 'W': []}},
-            'R24S': {'name': 'City Hall', 'times': {'N': [], 'Q': [], 'R': [], 'W': []}},
-            'R29N': {'name': 'Jay St.', 'times': {'N': [], 'Q': [], 'R': [], 'W': []}},
-            'R29S': {'name': 'Jay St.', 'times': {'N': [], 'Q': [], 'R': [], 'W': []}},
-            'R30N': {'name': 'DeKalb', 'times': {'N': [], 'Q': [], 'R': [], 'W': []}},
-            'R30S': {'name': 'DeKalb', 'times': {'N': [], 'Q': [], 'R': [], 'W': []}},
-            'R36N': {'name': '36th St.', 'times': {'N': [], 'Q': [], 'R': [], 'W': []}},
-            'R36S': {'name': '36th St.', 'times': {'N': [], 'Q': [], 'R': [], 'W': []}},
-            'R41N': {'name': '59th St.', 'times': {'N': [], 'Q': [], 'R': [], 'W': []}},
-            'R41S': {'name': '59th St.', 'times': {'N': [], 'Q': [], 'R': [], 'W': []}},
-            'R45N': {'name': '95th St.',  'times': {'N': [], 'Q': [], 'R': [], 'W': []}}}
+stations = {'R20N': {'name': 'Union Sq', 'times': {'N': [], 'Q': [], 'R': []}},
+            'R20S': {'name': 'Union Sq', 'times': {'N': [], 'Q': [], 'R': []}},
+            'R24N': {'name': 'City Hall', 'times': {'N': [], 'Q': [], 'R': []}},
+            'R24S': {'name': 'City Hall', 'times': {'N': [], 'Q': [], 'R': []}},
+            'R29N': {'name': 'Jay St.', 'times': {'N': [], 'Q': [], 'R': []}},
+            'R29S': {'name': 'Jay St.', 'times': {'N': [], 'Q': [], 'R': []}},
+            'R30N': {'name': 'DeKalb', 'times': {'N': [], 'Q': [], 'R': []}},
+            'R30S': {'name': 'DeKalb', 'times': {'N': [], 'Q': [], 'R': []}},
+            'R36N': {'name': '36th St.', 'times': {'N': [], 'Q': [], 'R': []}},
+            'R36S': {'name': '36th St.', 'times': {'N': [], 'Q': [], 'R': []}},
+            'R41N': {'name': '59th St.', 'times': {'N': [], 'Q': [], 'R': []}},
+            'R41S': {'name': '59th St.', 'times': {'N': [], 'Q': [], 'R': []}},
+            'R45N': {'name': '95th St.',  'times': {'N': [], 'Q': [], 'R': []}}}
 
 key_file = open(dir + "mta.key", "r")
 key = key_file.readline().rstrip('\n')
@@ -61,19 +61,20 @@ for station in stations:
     for train in stations[station]['times']:
         stations[station]['times'][train] = sorted(stations[station]['times'][train])
 
-header = '{:>9}  {:<7}  {:<7}  {:<7}  {:<7}\n'.format('', ' N', ' Q', ' R', ' W')
+header = '{:>9}  {:<7}      {:<7}      {:<7}\n'.format('', ' N', ' Q', ' R')
 
 def time_format(station, stations):
-    times = '{:>9}  {:>2}, {:>2}   {:>2}, {:>2}   {:>2}, {:>2}   {:>2}, {:>2} \n'.format(
+    times = '{:>9}  {:>2}, {:>2}, {:>2}   {:>2}, {:>2}, {:>2}   {:>2}, {:>2}, {:>2} \n'.format(
         stations[station]['name'],
         stations[station]['times']['N'][0] if len(stations[station]['times']['N']) > 0 else '-',
         stations[station]['times']['N'][1] if len(stations[station]['times']['N']) > 1 else '-',
+        stations[station]['times']['N'][2] if len(stations[station]['times']['N']) > 2 else '-',
         stations[station]['times']['Q'][0] if len(stations[station]['times']['Q']) > 0 else '-',
         stations[station]['times']['Q'][1] if len(stations[station]['times']['Q']) > 1 else '-',
+        stations[station]['times']['Q'][2] if len(stations[station]['times']['Q']) > 2 else '-',
         stations[station]['times']['R'][0] if len(stations[station]['times']['R']) > 0 else '-',
         stations[station]['times']['R'][1] if len(stations[station]['times']['R']) > 1 else '-',
-        stations[station]['times']['W'][0] if len(stations[station]['times']['W']) > 0 else '-',
-        stations[station]['times']['W'][1] if len(stations[station]['times']['W']) > 1 else '-')
+        stations[station]['times']['R'][2] if len(stations[station]['times']['R']) > 2 else '-')
     return times
 
 
