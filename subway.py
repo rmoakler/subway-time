@@ -62,10 +62,10 @@ for station in stations:
     for train in stations[station]['times']:
         stations[station]['times'][train] = sorted(stations[station]['times'][train])
 
-header = '{:>9}  {:<7}      {:<7}      {:<7}\n'.format('', ' N', ' Q', ' R')
+header = '{:>9}  {:<7}     {:<7}     {:<7}\n'.format('', ' N', ' Q', ' R')
 
 def time_format(station, stations):
-    times = '{:>9}  {:>2}, {:>2}, {:>2}   {:>2}, {:>2}, {:>2}   {:>2}, {:>2}, {:>2} \n'.format(
+    times = '{:>9}  {:>2}, {:>2}, {:>2}  {:>2}, {:>2}, {:>2}  {:>2}, {:>2}, {:>2} \n'.format(
         stations[station]['name'],
         stations[station]['times']['N'][0] if len(stations[station]['times']['N']) > 0 else '-',
         stations[station]['times']['N'][1] if len(stations[station]['times']['N']) > 1 else '-',
